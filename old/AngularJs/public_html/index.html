@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+<head>
+<title>Angular JS Controller</title>
+<style>
+td{
+     width: 100px;
+}
+</style>
+</head>
+<body>
+
+<div ng-app="" ng-controller="cartController">
+<h1> Shopping Cart </h1>
+
+<table>
+<tr ng-repeat="item in items">
+<td> {{item.title}} </td>
+<td> <input type="text" ng-model="item.quantity" size = "5"> </td>
+<td> {{item.price | currency}} </td>
+<td> {{item.price * item.quantity | currency}} </td>
+ <button ng-click="remove($index)"> Remove </button>
+</tr>
+</table>
+</div>
+<script>
+function cartController($scope){
+$scope.items = [
+{title: 'paint pots', quantity : 8, price: 35},
+{title: 'paint dots', quantity : 9, price: 3.95},
+{title: 'paint  pebbles', quantity : 10, price: 5.5},
+];
+$scope.remove = function(index){
+ $scope.items.splice(index, 1);
+}
+}
+</script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+</body>
+</html>
